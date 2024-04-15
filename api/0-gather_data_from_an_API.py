@@ -12,10 +12,10 @@ todo_DATA = requests.get(
 
 NUMBER_OF_DONE_TASKS = 0
 TOTAL_NUMBER_OF_TASKS = 0
-EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1]["name"]
+EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1].get("name")
 
 for tasks in todo_DATA:
-    if tasks["completed"]:
+    if tasks.get("completed"):
         NUMBER_OF_DONE_TASKS += 1
     TOTAL_NUMBER_OF_TASKS += 1
 
@@ -24,8 +24,8 @@ print(
     'Employee {} is done with tasks({}/{})'
     .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
 for tasks in todo_DATA:
-    if tasks['completed']:
-        print(f'\t {tasks['title']}')
+    if tasks.get("completed"):
+        print(f'\t {tasks.get("title")}')
 
 if __name__ == "__main__":
     pass
