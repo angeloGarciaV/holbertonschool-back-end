@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module to gather data from an API"""
-from sys import argv
 import requests
+from sys import argv
 
 user_id = argv[1]
 EMPLOYEE_DATA = requests.get(
@@ -24,8 +24,9 @@ print(
     'Employee {} is done with tasks({}/{})'
     .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
 for tasks in todo_DATA:
+    TASK_TITLE = tasks.get("title")
     if tasks.get("completed"):
-        print(f'\t {tasks.get("title")}')
+        print(f'\t {TASK_TITLE}')
 
 if __name__ == "__main__":
     pass
