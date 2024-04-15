@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Module to gather data from an API"""
 import requests
-from sys import argv
+import sys
 
-user_id = argv[1]
+user_id = sys.argv[1]
 EMPLOYEE_DATA = requests.get(
     f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
 
