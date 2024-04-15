@@ -26,3 +26,6 @@ print(
 for tasks in todo_DATA:
     if tasks['completed']:
         print(f'\t{tasks['title']}')
+
+if __name__ == "__main__":
+    pass
