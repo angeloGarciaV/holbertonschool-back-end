@@ -12,7 +12,6 @@ todo_DATA = requests.get(
 
 NUMBER_OF_DONE_TASKS = 0
 TOTAL_NUMBER_OF_TASKS = 0
-TASK_TITLE = todo_DATA[int(user_id)-1]['title']
 EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1]["name"]
 
 for tasks in todo_DATA:
