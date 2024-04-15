@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module to gather data from an API"""
-import requests
 from sys import argv
+import requests
 
 user_id = argv[1]
 EMPLOYEE_DATA = requests.get(
