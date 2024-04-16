@@ -3,13 +3,13 @@
 import requests
 import sys
 
-user_id = sys.argv[1]
-EMPLOYEE_DATA = requests.get(
-    f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
-todo_DATA = requests.get(
-    f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
-
 if __name__ == "__main__":
+
+    user_id = sys.argv[1]
+    EMPLOYEE_DATA = requests.get(
+        f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
+    todo_DATA = requests.get(
+        f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
 
     NUMBER_OF_DONE_TASKS = 0
     TOTAL_NUMBER_OF_TASKS = 0
