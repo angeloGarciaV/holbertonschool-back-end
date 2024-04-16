@@ -4,12 +4,19 @@ import requests
 import sys
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"UsageError: python3 {__file__} employee_id(int)")
+        sys.exit(1)
 
     user_id = sys.argv[1]
     EMPLOYEE_DATA = requests.get(
         f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
     todo_DATA = requests.get(
         f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
+
+    if not EMPLOYEE_DATA or not todo_DATA:
+        print("No employee record found")
+        sys.exit(1)
 
     NUMBER_OF_DONE_TASKS = 0
     TOTAL_NUMBER_OF_TASKS = 0
