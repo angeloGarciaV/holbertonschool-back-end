@@ -21,4 +21,5 @@ if __name__ == "__main__":
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for tasks in todo_DATA:
             writer.writerow(
-                [USER_ID, USERNAME, tasks.get('completed'), tasks.get('title')])
+                [USER_ID, USERNAME,
+                 tasks.get('completed'), tasks.get('title')])
