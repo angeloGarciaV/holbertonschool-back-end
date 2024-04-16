@@ -13,7 +13,6 @@ if __name__ == "__main__":
         f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
 
     EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1].get("name")
-
     USER_ID = EMPLOYEE_DATA[int(user_id)-1].get("id")
     USERNAME = EMPLOYEE_DATA[int(user_id)-1].get("username")
 
