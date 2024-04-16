@@ -1,41 +1,44 @@
 #!/usr/bin/python3
-"""Module to gather data from an API"""
+"""Retrieves and displays an employee's TODO list progress"""
 import requests
 import sys
 
 
-def get_data():
-    if len(sys.argv) != 2:
-        print(f"UsageError: python3 {__file__} employee_id(int)")
-        sys.exit(1)
+def get_employee_todos(employee_id):
+    """Retrieves the employee's todos from the API"""
+    url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    response = requests.get(url)
+    todos = response.json()
+    return todos
 
-    user_id = sys.argv[1]
-    EMPLOYEE_DATA = requests.get(
-        f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
-    todo_DATA = requests.get(
-        f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
 
-    if not EMPLOYEE_DATA or not todo_DATA:
-        print("No employee record found")
-        sys.exit(1)
+def display_todo_progress(employee_id):
+    """Displays the employee's TODO list progress"""
+    todos = get_employee_todos(employee_id)
+    employee_name = get_employee_name(employee_id)
+    total_tasks = len(todos)
+    done_tasks = sum(1 for task in todos if task.get("completed"))
+    print(f"Employee {employee_name} is done with tasks"
+          f"({done_tasks}/{total_tasks}):")
+    for task in todos:
+        if task.get("completed"):
+            print(f"\t {task.get('title')}")
 
-    NUMBER_OF_DONE_TASKS = 0
-    TOTAL_NUMBER_OF_TASKS = 0
-    EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1].get("name")
 
-    for tasks in todo_DATA:
-        if tasks.get("completed"):
-            NUMBER_OF_DONE_TASKS += 1
-        TOTAL_NUMBER_OF_TASKS += 1
-
-    print(
-        'Employee {} is done with tasks({}/{}):'
-        .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
-    for tasks in todo_DATA:
-        TASK_TITLE = tasks.get("title")
-        if tasks.get("completed"):
-            print(f'\t {TASK_TITLE}')
+def get_employee_name(employee_id):
+    """Retrieves the employee's name from the API"""
+    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    response = requests.get(url)
+    employee = response.json()
+    return f"{employee.get('name')}"
 
 
 if __name__ == "__main__":
-    get_data()
+    if len(sys.argv) < 2:
+        print("Usage: python3 0-gather_data_from_an_API.py <employee_id>")
+    else:
+        try:
+            employee_id = int(sys.argv[1])
+            display_todo_progress(employee_id)
+        except ValueError:
+            print("Employee ID must be an integer")
