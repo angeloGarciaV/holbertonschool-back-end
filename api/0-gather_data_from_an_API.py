@@ -4,10 +4,6 @@ import requests
 import sys
 
 
-if len(sys.argv) != 2:
-    print("Usage: python script.py <employee_id>")
-    sys.exit(1)
-
 user_id = sys.argv[1]
 EMPLOYEE_DATA = requests.get(
     f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
@@ -25,7 +21,7 @@ for tasks in todo_DATA:
     TOTAL_NUMBER_OF_TASKS += 1
 
 print(
-    'Employee {} is done with tasks({}/{})'
+    'Employee {} is done with tasks({}/{}):'
     .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
 for tasks in todo_DATA:
     TASK_TITLE = tasks.get("title")
@@ -33,4 +29,6 @@ for tasks in todo_DATA:
         print(f'\t {TASK_TITLE}')
 
 if __name__ == "__main__":
-    pass
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
