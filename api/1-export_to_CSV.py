@@ -15,7 +15,6 @@ if __name__ == "__main__":
     EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1].get("name")
     USER_ID = EMPLOYEE_DATA[int(user_id)-1].get("id")
     USERNAME = EMPLOYEE_DATA[int(user_id)-1].get("username")
-
     with open(f'{user_id}.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for tasks in todo_DATA:

@@ -10,7 +10,6 @@ if __name__ == "__main__":
         f'https://jsonplaceholder.typicode.com/users?Id={user_id}').json()
     todo_DATA = requests.get(
         f'https://jsonplaceholder.typicode.com/todos?userId={user_id}').json()
-
     NUMBER_OF_DONE_TASKS = 0
     TOTAL_NUMBER_OF_TASKS = 0
     EMPLOYEE_NAME = EMPLOYEE_DATA[int(user_id)-1].get("name")
