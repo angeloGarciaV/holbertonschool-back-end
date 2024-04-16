@@ -28,4 +28,5 @@ if __name__ == "__main__":
                 "completed": tasks.get('completed'),
                 "username": USERNAME}
             USER_DATA[USER_ID].append(task_data)
+            
         json.dump(USER_DATA, jsonfile)

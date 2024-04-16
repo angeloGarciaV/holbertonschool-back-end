@@ -25,4 +25,5 @@ with open('todo_all_employees.json', 'w') as jsonfile:
                 "completed": tasks.get("completed")
             }
             USER_DATA[USER_ID].append(task_data)
+            
     json.dump(USER_DATA, jsonfile)
