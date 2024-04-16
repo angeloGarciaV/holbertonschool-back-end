@@ -3,7 +3,8 @@
 import requests
 import sys
 
-if __name__ == "__main__":
+
+def get_data():
     if len(sys.argv) != 2:
         print(f"UsageError: python3 {__file__} employee_id(int)")
         sys.exit(1)
@@ -34,3 +35,7 @@ if __name__ == "__main__":
         TASK_TITLE = tasks.get("title")
         if tasks.get("completed"):
             print(f'\t {TASK_TITLE}')
+
+
+if __name__ == "__main__":
+    get_data()
