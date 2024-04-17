@@ -19,11 +19,12 @@ with open('todo_all_employees.json', 'w') as jsonfile:
         USER_DATA[USER_ID] = []
 
         for tasks in todo_DATA:
-            task_data = {
-                "username": USERNAME,
-                "task": tasks.get("title"),
-                "completed": tasks.get("completed")
-            }
-            USER_DATA[USER_ID].append(task_data)
+            if tasks.get("userId") == USER_ID:  # Check if userId in todo_DATA matches USER_ID
+                task_data = {
+                    "username": USERNAME,
+                    "task": tasks.get("title"),
+                    "completed": tasks.get("completed")
+                }
+                USER_DATA[USER_ID].append(task_data)
 
     json.dump(USER_DATA, jsonfile)
