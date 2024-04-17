@@ -12,9 +12,9 @@ todo_DATA = requests.get(
 USER_DATA = {}
 
 with open('todo_all_employees.json', 'w') as jsonfile:
-    for employees in range(0, len(EMPLOYEE_DATA)):
-        USER_ID = EMPLOYEE_DATA[employees].get('id')
-        USERNAME = EMPLOYEE_DATA[employees].get('username')
+    for employees in EMPLOYEE_DATA:
+        USER_ID = employees.get("id")
+        USERNAME = employees.get("username")
 
         USER_DATA[USER_ID] = []
 
